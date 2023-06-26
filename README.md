@@ -24,8 +24,8 @@ To test subscription, two mosquitto_sub invocations are used, separated by a pau
 ## test 1
 Client does not supply (--disable-clean-session)
 ```bash
-root@ff5c637814b4:/# mosquitto_sub -h mosquitto -t test --qos 1  -C 3 --id testclient  && echo "disconnected and sleeping"  ; sleep 10 ; echo "reconnecting" && mosquitto_sub -h mosquitto -t test --qos 1 --id tes
-tclient
+root@ff5c637814b4:/# mosquitto_sub -h mosquitto -t test --qos 1  -C 3 --id testclient && echo "disconnected and sleeping"  ; sleep 10 ; echo "reconnecting" && mosquitto_sub -h mosquitto -t test --qos 1 --id testclient
+
 message 1
 message 2
 message 3
@@ -37,9 +37,8 @@ The second subscription does not receive messages published during the subscript
 ## test 2
 Client supplies (--disable-clean-session)
 ```bash
-root@ff5c637814b4:/# mosquitto_sub -h mosquitto -t test --qos 1  --id testclient --disable-clean-session   -C 3 && echo
-"disconnected and sleeping"  ; sleep 10 ; echo "reconnecting" && mosquitto_sub -h mosquitto -t test --qos 1 --id testcli
-ent --disable-clean-session
+root@ff5c637814b4:/# mosquitto_sub -h mosquitto -t test --qos 1  --id testclient --disable-clean-session   -C 3 && echo "disconnected and sleeping"  ; sleep 10 ; echo "reconnecting" && mosquitto_sub -h mosquitto -t test --qos 1 --id testclient --disable-clean-session
+
 message 1
 message 2
 message 3
@@ -60,6 +59,7 @@ The second subscription receives messages published during the subscription paus
 As in test 2, but publisher uses (--qos 0).
 ```bash
 root@ff5c637814b4:/# mosquitto_sub -h mosquitto -t test --qos 1  --id testclient --disable-clean-session   -C 3 && echo "disconnected and sleeping"  ; sleep 10 ; echo "reconnecting" && mosquitto_sub -h mosquitto -t test --qos 1 --id testclient --disable-clean-session
+
 message 1
 message 2
 message 3
@@ -73,6 +73,7 @@ The second subscription does not receive messages published during the subscript
 As in test 2, but mosquitto broker uses config options (max_queued_messages 3)
 ```bash
 root@ff5c637814b4:/# mosquitto_sub -h mosquitto -t test --qos 1  --id testclient --disable-clean-session   -C 3 && echo "disconnected and sleeping"  ; sleep 10 ; echo "reconnecting" && mosquitto_sub -h mosquitto -t test --qos 1 --id testclient --disable-clean-session
+
 message 1
 message 2
 message 3
